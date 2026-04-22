@@ -22,7 +22,7 @@ body { background:#0e0e0e; display:flex; align-items:flex-start; justify-content
 
 /* ── REELS ── */
 .reels-container { position:absolute; inset:0; background:#000; overflow:hidden; }
-@keyframes reelScroll { 0%{transform:translateY(0);}25%{transform:translateY(0);}30%{transform:translateY(-100%);}55%{transform:translateY(-100%);}60%{transform:translateY(-200%);}85%{transform:translateY(-200%);}90%{transform:translateY(-300%);}100%{transform:translateY(-300%);} }
+@keyframes reelScroll { 0%{transform:translateY(0);}25%{transform:translateY(0);}30%{transform:translateY(-25%);}55%{transform:translateY(-25%);}60%{transform:translateY(-50%);}85%{transform:translateY(-50%);}90%{transform:translateY(-75%);}100%{transform:translateY(-75%);} }
 @keyframes sunGlow { 0%,100%{transform:translateX(-50%) scale(1);opacity:0.9;}50%{transform:translateX(-50%) scale(1.12);opacity:1;} }
 @keyframes cloudDrift { 0%,100%{transform:translateX(0);}50%{transform:translateX(14px);} }
 @keyframes wave { 0%,100%{transform:translateX(0);}50%{transform:translateX(-2%);} }
@@ -31,8 +31,8 @@ body { background:#0e0e0e; display:flex; align-items:flex-start; justify-content
 @keyframes tailWag { 0%,100%{transform:rotate(-20deg);}50%{transform:rotate(10deg);} }
 @keyframes zzzFloat { 0%{transform:translateY(0);opacity:0.7;}100%{transform:translateY(-20px);opacity:0;} }
 @keyframes heartPop { 0%,100%{transform:scale(1) translateY(0);opacity:0.8;}50%{transform:scale(1.2) translateY(-6px);opacity:1;} }
-.reels-scroll { position:absolute; inset:0; animation:reelScroll 20s ease-in-out infinite; }
-.reel { position:absolute; inset:0; background:#000; }
+.reels-scroll { position:absolute; left:0; right:0; top:0; height:400%; animation:reelScroll 20s ease-in-out infinite; }
+.reel { position:absolute; left:0; right:0; height:100%; background:#000; }
 .reel-video { position:absolute; inset:0; overflow:hidden; }
 .reel-bg-1 { background:radial-gradient(ellipse at 30% 60%,rgba(255,100,50,0.6),transparent 50%),radial-gradient(ellipse at 70% 30%,rgba(255,200,50,0.4),transparent 50%),linear-gradient(180deg,#1a0a00,#2d1200 40%,#0a0005); }
 .reel-bg-2 { background:radial-gradient(ellipse at 60% 40%,rgba(50,120,255,0.5),transparent 50%),radial-gradient(ellipse at 20% 70%,rgba(0,200,180,0.3),transparent 50%),linear-gradient(180deg,#000a1a,#001020 40%,#000510); }
@@ -752,7 +752,7 @@ function setPhaseUI(phase){
   if(phase===2)setTimeout(()=>document.getElementById('sleepBar').style.width='82%',300);
   document.getElementById('sgAntiAlgo').classList.toggle('show',phase===3);
   const scroll=document.getElementById('reelsScroll');
-  if(phase===3){scroll.style.animation='none';scroll.style.transform='translateY(-200%)';}
+  if(phase===3){scroll.style.animation='none';scroll.style.transform='translateY(-50%)';}
   else{scroll.style.transform='';scroll.style.animation='reelScroll 20s ease-in-out infinite';}
   const sp=document.getElementById('riSponsored');
   const reward=document.getElementById('sgReward');
