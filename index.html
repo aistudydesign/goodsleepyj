@@ -23,6 +23,14 @@ body { background:#0e0e0e; display:flex; align-items:flex-start; justify-content
 /* ── REELS ── */
 .reels-container { position:absolute; inset:0; background:#000; overflow:hidden; }
 @keyframes reelScroll { 0%{transform:translateY(0);}25%{transform:translateY(0);}30%{transform:translateY(-100%);}55%{transform:translateY(-100%);}60%{transform:translateY(-200%);}85%{transform:translateY(-200%);}90%{transform:translateY(-300%);}100%{transform:translateY(-300%);} }
+@keyframes sunGlow { 0%,100%{transform:translateX(-50%) scale(1);opacity:0.9;} 50%{transform:translateX(-50%) scale(1.15);opacity:1;} }
+@keyframes cloudDrift { from{transform:translateX(-20px);} to{transform:translateX(20px);} }
+@keyframes wave { 0%,100%{transform:translateX(0) scaleY(1);} 50%{transform:translateX(-3%) scaleY(1.5);} }
+@keyframes foodFloat { 0%,100%{transform:translateY(0) rotate(-3deg);} 50%{transform:translateY(-12px) rotate(3deg);} }
+@keyframes steam { 0%{transform:translateY(0) scaleX(1);opacity:0.6;} 100%{transform:translateY(-30px) scaleX(1.5);opacity:0;} }
+@keyframes bobFloat { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
+@keyframes sunRise { 0%,100%{opacity:0.7;transform:scale(1);} 50%{opacity:1;transform:scale(1.1);} }
+@keyframes waterFlow { from{transform:translateX(0);} to{transform:translateX(41px);} }
 .reels-scroll { position:absolute; inset:0; animation:reelScroll 20s ease-in-out infinite; }
 .reel { position:absolute; inset:0; }
 .reel-video { position:absolute; inset:0; overflow:hidden; }
@@ -268,13 +276,29 @@ body { background:#0e0e0e; display:flex; align-items:flex-start; justify-content
   <div class="reels-container">
     <div class="reels-scroll" id="reelsScroll">
 
-      <!-- Reel 1 -->
+      <!-- Reel 1 — 제주 여행 -->
       <div class="reel" style="top:0">
-        <div class="reel-video reel-bg-1"></div>
+        <div class="reel-video reel-bg-1">
+          <!-- 노을 태양 -->
+          <div style="position:absolute;top:15%;left:50%;transform:translateX(-50%);width:120px;height:120px;background:radial-gradient(circle,rgba(255,180,50,0.9),rgba(255,100,30,0.6) 40%,transparent 70%);animation:sunGlow 4s ease-in-out infinite"></div>
+          <!-- 구름들 -->
+          <div style="position:absolute;top:18%;left:10%;width:80px;height:24px;background:rgba(255,200,150,0.25);border-radius:99px;filter:blur(8px);animation:cloudDrift 12s linear infinite"></div>
+          <div style="position:absolute;top:24%;right:15%;width:60px;height:18px;background:rgba(255,180,120,0.2);border-radius:99px;filter:blur(6px);animation:cloudDrift 18s linear infinite reverse"></div>
+          <!-- 바다 -->
+          <div style="position:absolute;bottom:0;left:0;right:0;height:42%;background:linear-gradient(180deg,rgba(255,120,40,0.4),rgba(180,60,20,0.6),rgba(30,20,40,0.9));overflow:hidden">
+            <!-- 파도 -->
+            <div style="position:absolute;top:10%;left:-10%;width:120%;height:3px;background:rgba(255,180,100,0.3);border-radius:99px;animation:wave 3s ease-in-out infinite"></div>
+            <div style="position:absolute;top:25%;left:-10%;width:120%;height:2px;background:rgba(255,180,100,0.2);border-radius:99px;animation:wave 4s ease-in-out infinite;animation-delay:0.8s"></div>
+            <div style="position:absolute;top:40%;left:-10%;width:120%;height:2px;background:rgba(255,160,80,0.15);border-radius:99px;animation:wave 5s ease-in-out infinite;animation-delay:1.5s"></div>
+          </div>
+          <!-- 성산일출봉 실루엣 -->
+          <div style="position:absolute;bottom:38%;left:50%;transform:translateX(-50%);width:160px;height:80px;background:rgba(20,10,5,0.85);clip-path:polygon(0% 100%,15% 60%,30% 40%,45% 20%,50% 0%,55% 20%,70% 40%,85% 55%,100% 100%);filter:drop-shadow(0 -4px 20px rgba(255,100,30,0.4))"></div>
+          <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(0,0,0,0.5),transparent 60%)"></div>
+        </div>
         <div class="platform-badge"><div class="pb-dot" id="pb1dot" style="background:#e1306c"></div><span id="pb1name">Instagram</span></div>
         <div class="reel-ui">
           <div class="reel-actions">
-            <div class="action-item"><div class="profile-pic"><div style="width:100%;height:100%;background:linear-gradient(135deg,#f09,#f60)"></div></div></div>
+            <div class="action-item"><div class="profile-pic"><div style="width:100%;height:100%;background:linear-gradient(135deg,#f09,#f60);display:flex;align-items:center;justify-content:center;font-size:18px">✈️</div></div></div>
             <div class="action-item"><div class="action-icon">🤍</div><span class="action-count">142K</span></div>
             <div class="action-item"><div class="action-icon">💬</div><span class="action-count">2,847</span></div>
             <div class="action-item"><div class="action-icon">↗️</div><span class="action-count">공유</span></div>
@@ -297,59 +321,107 @@ body { background:#0e0e0e; display:flex; align-items:flex-start; justify-content
         </div>
       </div>
 
-      <!-- Reel 2 -->
+      <!-- Reel 2 — 음식 먹방 -->
       <div class="reel" style="top:100%">
-        <div class="reel-video reel-bg-2"></div>
+        <div class="reel-video reel-bg-2">
+          <!-- 음식 비주얼 -->
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden">
+            <div style="font-size:180px;filter:drop-shadow(0 20px 60px rgba(0,0,0,0.8));animation:foodFloat 4s ease-in-out infinite;transform-origin:center">🍝</div>
+          </div>
+          <!-- 스팀 효과 -->
+          <div style="position:absolute;bottom:30%;left:50%;transform:translateX(-50%);display:flex;gap:16px">
+            <div style="width:3px;height:40px;background:linear-gradient(to top,rgba(255,255,255,0.4),transparent);border-radius:99px;animation:steam 2s ease-in-out infinite;animation-delay:0s"></div>
+            <div style="width:3px;height:50px;background:linear-gradient(to top,rgba(255,255,255,0.3),transparent);border-radius:99px;animation:steam 2s ease-in-out infinite;animation-delay:0.4s"></div>
+            <div style="width:3px;height:35px;background:linear-gradient(to top,rgba(255,255,255,0.4),transparent);border-radius:99px;animation:steam 2s ease-in-out infinite;animation-delay:0.8s"></div>
+          </div>
+          <!-- 조회수 라이브 -->
+          <div style="position:absolute;top:70px;left:16px;background:rgba(255,0,0,0.85);border-radius:6px;padding:3px 8px;font-size:11px;font-weight:700;color:white;font-family:'DM Mono';letter-spacing:1px">● LIVE</div>
+          <!-- 배경 텍스처 -->
+          <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(0,0,0,0.8),transparent 60%)"></div>
+        </div>
         <div class="platform-badge"><div class="pb-dot" id="pb2dot" style="background:#ff0000"></div><span id="pb2name">YouTube</span></div>
         <div class="reel-ui">
           <div class="reel-actions">
-            <div class="action-item"><div class="profile-pic"><div style="width:100%;height:100%;background:linear-gradient(135deg,#0cf,#06f)"></div></div></div>
+            <div class="action-item"><div class="profile-pic"><div style="width:100%;height:100%;background:linear-gradient(135deg,#ff6b6b,#ee5a24);display:flex;align-items:center;justify-content:center;font-size:18px">👨‍🍳</div></div></div>
             <div class="action-item"><div class="action-icon">👍</div><span class="action-count">89.2K</span></div>
             <div class="action-item"><div class="action-icon">💬</div><span class="action-count">1,204</span></div>
             <div class="action-item"><div class="action-icon">↗️</div><span class="action-count">공유</span></div>
           </div>
           <div class="reel-bottom">
-            <div class="reel-username" id="r2user">@seoul_foodie</div>
-            <div class="reel-caption" id="r2cap">강남 숨은 파스타 맛집 발견 🍝<br>웨이팅 1시간 가치있음 #맛집</div>
+            <div class="reel-username" id="r2user">@seoul_foodie <span class="follow-btn">팔로우</span></div>
+            <div class="reel-caption" id="r2cap">강남 숨은 파스타 맛집 발견 🍝<br>웨이팅 1시간 가치있음 #맛집 #먹방</div>
             <div class="reel-music"><div class="music-disc">♪</div><span id="r2music">Italian Kitchen — Café Vibes</span></div>
           </div>
         </div>
       </div>
 
-      <!-- Reel 3 boring -->
+      <!-- Reel 3 — 역알고리즘 (낚시) -->
       <div class="reel" style="top:200%">
-        <div class="reel-video" style="background:linear-gradient(180deg,#0a0a0a,#111)">
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;opacity:0.45">
-            <div style="font-size:64px">🎣</div>
-            <div style="font-family:'DM Mono';font-size:12px;color:rgba(255,255,255,0.3);text-align:center;letter-spacing:1px">민물낚시 완전정복<br>EP.47 — 찌 맞춤의 기초</div>
+        <div class="reel-video" style="background:linear-gradient(180deg,#0d1a0d,#0a1a14,#051010)">
+          <!-- 강 배경 -->
+          <div style="position:absolute;bottom:0;left:0;right:0;height:45%;background:linear-gradient(180deg,transparent,rgba(20,60,40,0.8));overflow:hidden">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 40px,rgba(255,255,255,0.02) 40px,rgba(255,255,255,0.02) 41px);animation:waterFlow 3s linear infinite"></div>
           </div>
+          <!-- 하늘 -->
+          <div style="position:absolute;top:0;left:0;right:0;height:55%;background:linear-gradient(180deg,#0a1520,#1a2a1a)"></div>
+          <!-- 낚싯대 아저씨 -->
+          <div style="position:absolute;bottom:38%;left:50%;transform:translateX(-50%);font-size:72px;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.6))">🎣</div>
+          <!-- 찌 애니메이션 -->
+          <div style="position:absolute;bottom:44%;left:58%;width:8px;height:8px;background:#ff4444;border-radius:50%;animation:bobFloat 2s ease-in-out infinite;box-shadow:0 0 8px rgba(255,68,68,0.6)"></div>
+          <!-- 텍스트 오버레이 -->
+          <div style="position:absolute;top:80px;left:0;right:0;text-align:center;font-family:DM Mono,monospace;font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:2px">오전 5:23 · 경기도 가평군</div>
+          <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(0,0,0,0.7),transparent 60%)"></div>
         </div>
         <div class="boring-tag">⚙ 역알고리즘 모드</div>
         <div class="reel-ui">
           <div class="reel-actions">
-            <div class="action-item"><div class="profile-pic"><div style="width:100%;height:100%;background:linear-gradient(135deg,#555,#333)"></div></div></div>
+            <div class="action-item"><div class="profile-pic"><div style="width:100%;height:100%;background:linear-gradient(135deg,#2d5a27,#1a3a15);display:flex;align-items:center;justify-content:center;font-size:16px">🧓</div></div></div>
             <div class="action-item"><div class="action-icon">🤍</div><span class="action-count">203</span></div>
             <div class="action-item"><div class="action-icon">💬</div><span class="action-count">17</span></div>
           </div>
           <div class="reel-bottom">
             <div class="reel-username" style="color:rgba(255,255,255,0.5)">@fishing_master_1972</div>
-            <div class="reel-caption" style="color:rgba(255,255,255,0.4);font-size:12px">찌 맞춤의 기본은 물의 밀도와 부력의 균형...</div>
+            <div class="reel-caption" style="color:rgba(255,255,255,0.4);font-size:12px">찌 맞춤의 기본은 물의 밀도와 부력의 균형입니다<br>오늘은 붕어낚시 기초편...</div>
+            <div class="reel-music" style="opacity:0.35"><div class="music-disc" style="animation:none">♪</div> 조용한 강가 — 자연의 소리</div>
           </div>
         </div>
       </div>
 
-      <!-- Reel 4 -->
+      <!-- Reel 4 — 모닝루틴 -->
       <div class="reel" style="top:300%">
-        <div class="reel-video reel-bg-4"></div>
+        <div class="reel-video reel-bg-4">
+          <!-- 새벽 햇살 효과 -->
+          <div style="position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:300px;height:300px;background:radial-gradient(circle,rgba(255,200,50,0.35),transparent 65%);animation:sunRise 5s ease-in-out infinite"></div>
+          <!-- 도시 실루엣 -->
+          <div style="position:absolute;bottom:0;left:0;right:0;height:35%;overflow:hidden">
+            <div style="position:absolute;bottom:0;left:5%;width:40px;height:120px;background:rgba(0,0,0,0.6);border-radius:4px 4px 0 0"></div>
+            <div style="position:absolute;bottom:0;left:15%;width:60px;height:160px;background:rgba(0,0,0,0.55);border-radius:4px 4px 0 0"></div>
+            <div style="position:absolute;bottom:0;left:28%;width:35px;height:90px;background:rgba(0,0,0,0.65);border-radius:4px 4px 0 0"></div>
+            <div style="position:absolute;bottom:0;left:38%;width:80px;height:200px;background:rgba(0,0,0,0.5);border-radius:4px 4px 0 0"></div>
+            <div style="position:absolute;bottom:0;left:55%;width:50px;height:140px;background:rgba(0,0,0,0.6);border-radius:4px 4px 0 0"></div>
+            <div style="position:absolute;bottom:0;left:68%;width:70px;height:180px;background:rgba(0,0,0,0.55);border-radius:4px 4px 0 0"></div>
+            <div style="position:absolute;bottom:0;left:82%;width:45px;height:110px;background:rgba(0,0,0,0.6);border-radius:4px 4px 0 0"></div>
+          </div>
+          <!-- 창문 불빛들 -->
+          <div style="position:absolute;bottom:15%;left:39%;width:6px;height:6px;background:rgba(255,220,100,0.8);border-radius:1px;box-shadow:12px 0 0 rgba(255,220,100,0.6),0 12px 0 rgba(255,220,100,0.4),24px 8px 0 rgba(255,220,100,0.7)"></div>
+          <div style="position:absolute;bottom:20%;left:69%;width:5px;height:5px;background:rgba(255,220,100,0.7);border-radius:1px;box-shadow:10px 0 0 rgba(255,220,100,0.5),0 10px 0 rgba(255,220,100,0.6)"></div>
+          <!-- 시간 표시 -->
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:72px;color:rgba(255,255,255,0.9);letter-spacing:4px;line-height:1;text-shadow:0 0 40px rgba(255,200,50,0.4)">06:00</div>
+            <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:3px;margin-top:4px">D+12 · 30일 챌린지</div>
+          </div>
+          <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(0,0,0,0.6),transparent 60%)"></div>
+        </div>
         <div class="reel-ui">
           <div class="reel-actions">
-            <div class="action-item"><div class="profile-pic"><div style="width:100%;height:100%;background:linear-gradient(135deg,#0f9,#090)"></div></div></div>
+            <div class="action-item"><div class="profile-pic"><div style="width:100%;height:100%;background:linear-gradient(135deg,#f9ca24,#f0932b);display:flex;align-items:center;justify-content:center;font-size:18px">☀️</div></div></div>
             <div class="action-item"><div class="action-icon">❤️</div><span class="action-count">44.1K</span></div>
             <div class="action-item"><div class="action-icon">💬</div><span class="action-count">892</span></div>
+            <div class="action-item"><div class="action-icon">↗️</div><span class="action-count">공유</span></div>
           </div>
           <div class="reel-bottom">
             <div class="reel-username">@morning.routine <span class="follow-btn">팔로우</span></div>
-            <div class="reel-caption">6시 기상 30일 챌린지 D+12 ☀️<br>#모닝루틴</div>
+            <div class="reel-caption">6시 기상 30일 챌린지 D+12 ☀️<br>진짜 달라진 것들 공유해요 #모닝루틴 #기상</div>
             <div class="reel-music"><div class="music-disc">♪</div> Wake Up — Morning Chill</div>
           </div>
         </div>
